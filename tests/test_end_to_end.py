@@ -2,7 +2,8 @@
 """
 Validation tests for the module as a black box
 """
-from dep_graph.dep_graph import Analyzer, JsonParser, PackagePrinter
+from dep_graph.analyzer import Analyzer
+from dep_graph.parser import JsonParser
 
 reference = (
     """{
@@ -25,5 +26,5 @@ reference = (
 def test_reference_exercise(capsys):
     (data, expected) = reference
     # We expect output written to stdout
-    Analyzer(JsonParser(data).parse(), PackagePrinter()).run()
+    Analyzer(JsonParser(data).parse()).run()
     assert capsys.readouterr().out == expected

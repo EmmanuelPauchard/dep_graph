@@ -3,7 +3,7 @@
 from abc import ABC
 import json
 
-from analyzer import Packages
+from dep_graph.analyzer import Packages
 
 
 class Parser(ABC):

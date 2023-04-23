@@ -1,22 +1,5 @@
 #!/usr/bin/env ipython3
-from dep_graph import
-
-reference = (
-{
-"pkg1": ["pkg2", "pkg3"],
-"pkg2": ["pkg3"],
-"pkg3": [],
-},
-"""
-- pkg1
-  - pkg2
-    - pkg3
-  - pkg3
-- pkg2
-  - pkg3
-- pkg3
-""",
-)
+from dep_graph.analyzer import Analyzer
 
 
 def test_reference():

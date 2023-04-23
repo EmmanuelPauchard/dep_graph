@@ -2,8 +2,8 @@
 
 import argparse
 
-from analyzer import Analyzer
-from parser import JsonParser
+from dep_graph.analyzer import Analyzer
+from dep_graph.parser import JsonParser
 
 
 def parse_arguments():

@@ -1,11 +1,5 @@
 #!/usr/bin/env ipython3
-test = """
-{
-"pkg1": ["pkg2", "pkg3"],
-"pkg2": ["pkg3"],
-"pkg3": [""]
-}
-"""
+from dep_graph.parser import JsonParser
 
 
 def test_reference():
