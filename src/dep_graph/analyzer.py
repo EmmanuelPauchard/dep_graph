@@ -1,6 +1,6 @@
 #!/usr/bin/env ipython3
 
-from typing import Union, List
+from typing import Union, List, Dict
 from abc import ABC
 import logging
 
@@ -9,7 +9,7 @@ import logging
 # Keys are packages names
 # Values are package dependencies, as a list of other package name.
 # If no dependencies, use an empty list
-Packages = dict[str, Union[List[str], List]]
+Packages = Dict[str, Union[List[str], List]]
 
 
 class PackageVisitor(ABC):
@@ -46,7 +46,7 @@ class Analyzer:
         self.packages = packages
         self.visitor = visitor
 
-    def _analyze_level(self, dependencies: list[str], parent: list[str] = [], level: int = 0):
+    def _analyze_level(self, dependencies: List[str], parent: List[str] = [], level: int = 0):
         """Recursive function to traverse the packages dependencies. The
         function iterates on all dependencies and recurse until one of the two
         exit conditions is met:
