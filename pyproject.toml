@@ -13,6 +13,9 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 
+[project.scripts]
+dep_graph = "dep_graph.dep_graph:main"
+
 [project.urls]
 "Homepage" = "https://github.com/emmanuelpauchard/dep_graph"
 "Bug Tracker" = "https://github.com/emmanuelpauchard/dep_graph/issues"
