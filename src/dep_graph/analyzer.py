@@ -1,8 +1,8 @@
 #!/usr/bin/env ipython3
 
 from typing import Union, List
-import logging
 from abc import ABC
+import logging
 
 
 # Type Alias for Packages definition
@@ -10,39 +10,6 @@ from abc import ABC
 # Values are package dependencies, as a list of other package name.
 # If no dependencies, use an empty list
 Packages = dict[str, Union[List[str], List]]
-
-
-class Parser(ABC):
-    """
-    Main object to parse Dependency Graph input.
-    """
-
-    def __init__(self, data: str):
-        """Interface for a Dependency Graph Parser
-
-        :param data: the input data to be parsed.
-
-        """
-        self.data = data
-
-    def parse() -> Packages:
-        """Parse packages dependency structure.
-
-        :return packages: The dependency network, a structure with packages and
-        their dependencies
-
-        """
-        pass
-
-
-import json
-
-
-class JsonParser(Parser):
-    """Parse Package dependencies from JSON text"""
-
-    def parse(self) -> Packages:
-        return json.loads(self.data)
 
 
 class PackageVisitor(ABC):
@@ -59,12 +26,19 @@ class PackageVisitor(ABC):
         pass
 
 
+class PackagePrinter(PackageVisitor):
+    """Default output to stdout, indented according to dependency level"""
+
+    def visit(self, level, package_name):
+        print("  " * level + "- " + package_name)
+
+
 class Analyzer:
     """
     Analyse a Dependency Graph
     """
 
-    def __init__(self, packages: Packages, visitor: PackageVisitor):
+    def __init__(self, packages: Packages, visitor: PackageVisitor = PackagePrinter()):
         """Create a Dependency Graph Analyser.
         :param packages: The dependency graph structure to be analyzed
         :param visitor: Will be called during graph analysis to handle output.
@@ -111,8 +85,3 @@ class Analyzer:
         """Perform the dependency analysis for the current package structure"""
 
         self._analyze_level(self.packages)
-
-
-class PackagePrinter(PackageVisitor):
-    def visit(self, level, package_name):
-        print("  " * level + "- " + package_name)
