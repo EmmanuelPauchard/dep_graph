@@ -21,9 +21,7 @@ test_data = [
 ]
 
 
-@pytest.mark.parametrize(
-    "data, expected", [(d[0], d[1]) for d in test_data], ids=[d[2] for d in test_data]
-)
+@pytest.mark.parametrize("data, expected", [(d[0], d[1]) for d in test_data], ids=[d[2] for d in test_data])
 def test_reference(data, expected):
     """Check that the reference example is implemented correctly."""
     r = StrVisitor()

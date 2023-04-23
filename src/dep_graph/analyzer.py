@@ -46,9 +46,7 @@ class Analyzer:
         self.packages = packages
         self.visitor = visitor
 
-    def _analyze_level(
-        self, dependencies: list[str], parent: list[str] = [], level: int = 0
-    ):
+    def _analyze_level(self, dependencies: list[str], parent: list[str] = [], level: int = 0):
         """Recursive function to traverse the packages dependencies. The
         function iterates on all dependencies and recurse until one of the two
         exit conditions is met:
@@ -72,9 +70,7 @@ class Analyzer:
         for p in dependencies:
             # In case of circular dependency, recursion ends
             if p in parent:
-                logging.warning(
-                    f"Circular dependency: {p}<-{'<-'.join(reversed(parent))}"
-                )
+                logging.warning(f"Circular dependency: {p}<-{'<-'.join(reversed(parent))}")
             else:
                 # Visit
                 self.visitor.visit(level, p)
